@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "error.schema.json",
+  "type": "object",
+  "title": "APIExceptionResponse",
+  "required": false,
+
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Describes type of error",
+      "required": false
+    },
+    "exception": {
+      "type": "string",
+      "description": "Type of exception",
+      "required": false
+    },
+    "message": {
+        "type": "string",
+        "description": "Detail of exception",
+        "required": false
+    },
+    "path": {
+      "type": "string",
+      "description": "The path throwing the exception",
+      "required": false
+    },
+    "status": {
+      "type": "integer",
+      "description": "http error code",
+      "required": false
+    },
+    "timestamp": {
+      "type": "string",
+      "description": "Timestamp of error",
+      "required": false
+    }
+  }
+}

@@ -1,0 +1,20 @@
+dependencies {
+  compile project(":commons")
+  compile "com.squareup.retrofit:retrofit:${project.retrofitVersion}"
+  compile "com.squareup.okhttp:okhttp:${project.okhttpVersion}"
+  compile "com.squareup.okhttp:okhttp-urlconnection:${project.okhttpVersion}"
+  compile "io.reactivex:rxjava:${project.rxjavaVersion}"
+
+  testCompile project(":api")
+  testCompile "org.spockframework:spock-spring:${project.spockVersion}"
+  testCompile "org.springframework.boot:spring-boot-starter-test:${project.springBootVersion}"
+}
+
+configurations.all {
+  resolutionStrategy.eachDependency { details ->
+    if (details.requested.group == 'org.springframework.boot') {
+      details.useVersion project.springBootVersion
+    }
+  }
+}
+

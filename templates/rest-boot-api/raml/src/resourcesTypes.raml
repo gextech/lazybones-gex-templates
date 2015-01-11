@@ -1,0 +1,81 @@
+- collection:
+    get:
+      description: Retrieve resources
+      responses:
+        200:
+          body:
+            schema: <<resourcePathName | !pluralize>>
+            example: '{}'
+        500:
+          body:
+            schema: error
+            example: |
+              {
+                "error" : {
+                  "code" : "java.lang.NumberFormatException",
+                  "messages" : "For input string: \"-1s01.2335314026465\"",
+                  "status": 500
+                 }
+              }
+
+    post:
+      description: Create Resource
+      responses:
+        200:
+          body:
+            schema: <<resourcePathName | !singularize>>
+            example: '{}'
+      body:
+        schema: <<resourcePathName | !singularize>>
+        #example: It cant be included based on resourcePathName :( I am not including then
+
+- member:
+    get:
+      description: Retrieve resource
+      responses:
+        200:
+          description: OK
+          body:
+            schema: <<resourcePathName | !singularize>>
+            example: '{}'
+        204:
+          description: No content, null object
+          body:
+            schema: <<resourcePathName | !singularize>>
+
+    put:
+      description: Update resource
+      responses:
+        201:
+          description: Updated
+          body:
+              schema: <<resourcePathName | !singularize>>
+      body:
+        schema: <<resourcePathName | !singularize>>
+        example: '{}'
+
+    delete:
+      description: Delete resource
+      responses:
+        200:
+          description: OK
+          body:
+            schema: !include simpleOK.schema.json
+        404:
+          description: Not found resource
+          body:
+            schema: !include error.schema.json
+
+- withGet:
+    get:
+      description: Retrieve resource
+      responses:
+        200:
+          description: OK
+          body:
+            schema: <<resourcePathName | !singularize>>
+            example: '{}'
+        204:
+          description: No content, null object
+          body:
+            schema: <<resourcePathName | !singularize>>

@@ -1,0 +1,50 @@
+buildscript {
+  repositories {
+    maven { url 'http://repo.spring.io/libs-release' }
+    jcenter()
+  }
+
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:${project.springBootVersion}"
+    classpath 'com.bluepapa32:gradle-watch-plugin:0.1.3'
+    classpath 'org.springframework:springloaded:1.2.1.RELEASE'
+  }
+}
+
+apply plugin: 'watch'
+
+def boot_starters = ['jdbc']
+
+dependencies {
+  boot_starters.each { name ->
+    compile("org.springframework.boot:spring-boot-starter-${name}:${project.springBootVersion}")
+  }
+
+  compile project(':commons')
+  compile project(':domain')
+
+  compile("gex.serling:binding-util:0.1.11"){
+    exclude group:"org.grails"
+    exclude group:"org.codehaus.groovy"
+  }
+
+  compile "com.google.code.gson:gson:${project.gsonVersion}"
+  compile "com.squareup.okhttp:okhttp:${project.okhttpVersion}"
+  compile "gex.commons:exceptions:${project.commonsExceptionsVersion}"
+
+  runtime 'org.postgresql:postgresql:9.3-1102-jdbc41'
+  runtime 'org.flywaydb:flyway-core:3.0'
+
+  testCompile ("org.springframework.boot:spring-boot-starter-web:${project.springBootVersion}")
+
+  testCompile "org.spockframework:spock-spring:${project.spockVersion}"
+  testCompile "org.springframework.boot:spring-boot-starter-test:${project.springBootVersion}"
+}
+
+watch {
+
+  groovy {
+    files files('src/main/groovy')
+    tasks 'compileGroovy'
+  }
+}

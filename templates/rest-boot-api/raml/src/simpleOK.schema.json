@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "simpleOK.schema.json",
+  "type": "object",
+  "title": "SimpleOK",
+  "required": false,
+
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "It indicate successful state",
+      "required": true
+    }
+  }
+
+}

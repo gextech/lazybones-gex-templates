@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "error.schema.json",
+  "type": "object",
+  "title": "ErrorResponse",
+  "required": false,
+
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "API error code",
+      "required": false
+    },
+    "message": {
+      "type": "string",
+      "description": "Human readable description of the error",
+      "required": false
+    },
+    "extraData": {
+        "type": "object",
+        "description": "Additional key/value information for diagnostic",
+        "required": false
+    },
+    "validationErrors": {
+        "type": "array",
+        "description": "Validation errors corresponding to domain errors",
+        "required": false
+    },
+    "entityName": {
+      "type": "string",
+      "description": "The entity which have errors",
+      "required": false
+    },
+    "identifier": {
+      "type": "string",
+      "description": "The entity id which have errors",
+      "required": false
+    }
+
+  }
+
+}

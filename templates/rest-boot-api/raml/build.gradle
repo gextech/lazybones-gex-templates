@@ -1,0 +1,36 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'be.filipblondeel.gradle:gradle-gulp-plugin:0.1'
+  }
+}
+
+apply plugin: 'gulp'
+
+node {
+  // Version of node to use.
+  version = '0.10.28'
+
+  // Enabled the automatic download.
+  download = true
+}
+
+//gulp_build.dependsOn 'installGulp'
+
+// If you like comment this line to avoid execute npm install during development
+//gulp_build.dependsOn 'npmInstall'
+
+defaultTasks 'gulp_build'
+
+
+task webjar(type: Jar, dependsOn: "jar") {
+  from(fileTree("src")) {
+    into "/META-INF/resources/"
+  }
+  outputs.upToDateWhen { false }
+}
+
+webjar.dependsOn gulp_build
+build.dependsOn webjar
