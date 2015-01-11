@@ -1,0 +1,71 @@
+buildscript {  
+  repositories {
+    jcenter()
+  }
+  dependencies { 
+    // the license plugin, see https://github.com/hierynomus/license-gradle-plugin  
+    classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.7.0'
+  }
+}
+
+allprojects {   
+  apply plugin: 'groovy' 
+  apply plugin: 'java' 
+
+
+  group = project.groupId  
+  sourceCompatibility = project.javaVersion 
+  targetCompatibility = project.javaVersion 
+  version = project.version
+
+   dependencies {        
+     compile "org.codehaus.groovy:groovy-all:${project.groovyVersion}"
+     testCompile "org.spockframework:spock-core:${project.spockVersion}"
+   }
+
+   // Disable the test report for the individual test task
+   test {
+     reports.html.enabled = true 
+     // testLogging.showStandardStreams = true
+   }
+
+   sourceSets { 
+     main { 
+       java {
+         srcDirs = []
+       }
+       groovy {
+         srcDirs += ['src/generated/groovy', 'src/generated/java', 'src/main/java']
+       }
+     }
+     integrationTest {  
+       java {
+         srcDirs = []
+       }
+       groovy {
+         srcDirs += ['src/test/integration/java', 'src/test/integration/groovy', 'src/generated/groovy', 'src/generated/java', 'src/ma/java']
+       }
+       resources {
+         srcDir 'src/test/integration/resources'
+       }
+     }
+   }
+
+   task allDeps(type: DependencyReportTask) {}
+
+   repositories {
+     jcenter()
+     mavenLocal()
+     maven { url 'http://dl.bintray.com/gextech/oss/' }
+   }
+
+}
+
+task testReport(type: TestReport) { 
+  destinationDir = file("$buildDir/reports/allTests") 
+  // Include the results from the `test` task in all subprojects
+  reportOn subprojects*.test
+}
+
+build.dependsOn ':raml:build'
+
