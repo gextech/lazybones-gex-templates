@@ -2,6 +2,7 @@ dependencies {
 
   compile "joda-time:joda-time:${project.jodatimeVersion}"
   compile "org.jadira.usertype:usertype.jodatime:2.0.1"
+  compile "org.springframework.boot:spring-boot-starter-security:${project.springBootVersion}"
 
   compile "org.grails:gorm-hibernate4-spring-boot:${project.gormHibernateVersion}"
   compile 'org.grails:grails-datastore-gorm-hibernate4:3.1.3.RELEASE'

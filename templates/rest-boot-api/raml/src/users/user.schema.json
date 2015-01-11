@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id" : "users/user.schema.json",
+  "title": "User",
+  "description": "A single user",
+  "type": "object",
+  "properties": {
+    "id": {
+        "description": "The user id, it is a uuid",
+        "type": "string"
+    },
+    "email": {
+        "description": "the user email, it must be unique",
+        "type": "string",
+        "format": "email"
+    },
+    "roles": {
+        "description": "the username roles",
+        "type": "array",
+        "items": {
+            "type": "string"
+        },
+        "uniqueItems": true
+    },
+    "username": {
+        "description": "the user username, it must be unique",
+        "type": "string"
+    },
+    "password": {
+        "description": "the user password, only for creation",
+        "optional": "true",
+        "type": "string"
+    }
+  },
+  "required": ["email", "username"]
+}

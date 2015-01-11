@@ -3,20 +3,13 @@ title: ${projectName}
 version: v1
 mediaType: application/json
 
-traits:
-  - paged:
-      queryParameters:
-        from:
-          description: This is the offset
-          type: integer
-        size:
-          description: Number of elements
-          type: integer
+traits: !include traits.raml
 
 schemas:
   - errorResponse: !include error.schema.json
   - APIExceptionResponse: !include exception.schema.json
   - simpleOK: !include simpleOK.schema.json
+  - user: !include users/user.schema.json
 
 resourceTypes: !include resourcesTypes.raml
 

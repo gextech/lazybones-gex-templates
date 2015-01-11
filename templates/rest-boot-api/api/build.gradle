@@ -21,13 +21,6 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-${name}:${project.springBootVersion}")
   }
 
-  compile ("org.springframework.cloud:spring-cloud-config-client:${project.springCloudVersion}") {
-    exclude group: 'org.springframework.boot'
-  }
-  compile ("org.springframework.cloud:spring-cloud-config-server:${project.springCloudVersion}") {
-    exclude group: 'org.springframework.boot'
-  }
-
   compile project(":core")
 
   compile "org.glassfish.jersey.media:jersey-media-multipart:${project.jerseyVersion}"

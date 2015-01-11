@@ -31,6 +31,7 @@ dependencies {
   compile "com.google.code.gson:gson:${project.gsonVersion}"
   compile "com.squareup.okhttp:okhttp:${project.okhttpVersion}"
   compile "gex.commons:exceptions:${project.commonsExceptionsVersion}"
+  compile("org.springframework.security.oauth:spring-security-oauth2:${project.springOauthVersion}")
 
   runtime 'org.postgresql:postgresql:9.3-1102-jdbc41'
   runtime 'org.flywaydb:flyway-core:3.0'
