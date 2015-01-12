@@ -11,7 +11,7 @@ buildscript {
 allprojects {   
   apply plugin: 'groovy' 
   apply plugin: 'java' 
-
+  apply plugin: 'idea'
 
   group = project.groupId  
   sourceCompatibility = project.javaVersion 
