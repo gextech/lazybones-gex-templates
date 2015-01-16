@@ -45,9 +45,8 @@ public class OAuth2ServerConfiguration {
         .anonymous()
         .and()
         .authorizeRequests()
-          .antMatchers("/v1/users/register").anonymous()
           .antMatchers("/v1/users").hasRole("ADMIN")
-          .anyRequest().authenticated()
+          .anyRequest().anonymous()
           // .antMatchers("/greeting").authenticated()
       // @formatter:on
     }

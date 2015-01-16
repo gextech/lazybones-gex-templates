@@ -17,10 +17,11 @@ processTemplates "gradle.properties", props
 processTemplates "raml/package.json", props
 processTemplates "raml/Gulpfile.js", props
 processTemplates "raml/src/index.raml", props
-processTemplates "*/src/main/groovy/**/*.groovy", props
+processTemplates "*/src/*/groovy/**/*.groovy", props
 
 def conversion = [
   'api/src/main/groovy/groupFolder/': FilenameUtils.concat('api/src/main/groovy/', props.groupFolder),
+  'api/src/test/groovy/groupFolder/': FilenameUtils.concat('api/src/test/groovy/', props.groupFolder),
   'core/src/main/groovy/groupFolder/': FilenameUtils.concat('core/src/main/groovy/', props.groupFolder),
   'domain/src/main/groovy/groupFolder/': FilenameUtils.concat('domain/src/main/groovy/', props.groupFolder)
 ]
