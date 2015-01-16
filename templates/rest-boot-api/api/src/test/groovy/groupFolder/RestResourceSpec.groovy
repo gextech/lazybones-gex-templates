@@ -1,8 +1,11 @@
 package ${group}.restv1
 
+import com.google.gson.Gson
+
 import ${group}.Application
 import ${group}.controller.SampleController
 import ${group}.restv2.RostResource
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.IntegrationTest
 import org.springframework.boot.test.SpringApplicationContextLoader
@@ -37,7 +40,7 @@ class RestResourceSpec extends Specification {
       entity.statusCode == CREATED
     where:
       version || expected
-      'v1'    || RestResource.response
+      'v1'    || new Gson().toJson(RestResource.data)
       'v2'    || RostResource.response
   }
 

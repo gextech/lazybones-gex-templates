@@ -3,7 +3,7 @@ package ${group}.client.v1;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
-import ${group}.dto.v1.APIExceptionResponse;
+import ${group}.dto.v1.ApiExceptionResponse;
 import ${group}.dto.v1.ErrorResponse;
 import retrofit.ErrorHandler;
 import retrofit.RestAdapter;
@@ -12,6 +12,8 @@ import retrofit.client.Header;
 import retrofit.client.OkClient;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
+import retrofit.RequestInterceptor;
+import retrofit.RequestInterceptor.RequestFacade;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
@@ -21,6 +23,7 @@ public class Builder {
   private Gson gson;
   private RestAdapter restAdapter;
   private OkHttpClient okHttpClient;
+  private OAuthToken token;
 
   private final static Logger LOGGER = Logger.getLogger(Builder.class.getName());
   private String baseUrl;
@@ -46,6 +49,22 @@ public class Builder {
 
   public Builder setDefaultApiConfig() {
     return withBaseUrl("http://localhost:9191");
+  }
+
+  public Builder withToken(OAuthToken token) {
+    this.token = token;
+    return this;
+  }
+
+  public Builder withLoginData(String username,
+          String password,
+          String grantType,
+          String scope,
+          String clientId,
+          String clientSecret) {
+    TokenService tokenService = new TokenService(okHttpClient, gson, baseUrl);
+    this.token = tokenService.login(username, password, grantType, scope, clientId, clientSecret);
+    return this;
   }
 
   public Builder setDefaultGson() {
@@ -80,7 +99,7 @@ public class Builder {
             }
           }
 
-          APIExceptionResponse errorResponse = (APIExceptionResponse) cause.getBodyAs(APIExceptionResponse.class);
+          ApiExceptionResponse errorResponse = (ApiExceptionResponse) cause.getBodyAs(ApiExceptionResponse.class);
           if (errorResponse != null && errorResponse.getMessage() != null) {
             return new ApiException("Respuesta invalida. " + errorResponse.getMessage(), r, cause);
           } else {
@@ -89,12 +108,23 @@ public class Builder {
         }
       }
 
+      RequestInterceptor authInterceptor = new RequestInterceptor() { 
+        @Override
+        public void intercept(RequestFacade request) {
+          if(token != null) {
+            request.addHeader("Authorization", "Bearer " + token.getAccessToken());
+          }
+        }
+      };
+
       RestAdapter defaultAdapter = new RestAdapter.Builder()
           .setEndpoint(baseUrl)
+          .setRequestInterceptor(authInterceptor)
           .setConverter(new GsonConverter(gson))
           .setClient(new OkClient(okHttpClient))
           .setErrorHandler(new ApiErrorHandler())
           .build();
+
       withRestAdapter(defaultAdapter);
     }
   }

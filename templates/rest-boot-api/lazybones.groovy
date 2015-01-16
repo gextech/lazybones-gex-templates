@@ -24,8 +24,10 @@ def conversion = [
   'api/src/main/groovy/groupFolder/': FilenameUtils.concat('api/src/main/groovy/', props.groupFolder),
   'api/src/test/groovy/groupFolder/': FilenameUtils.concat('api/src/test/groovy/', props.groupFolder),
   'core/src/main/groovy/groupFolder/': FilenameUtils.concat('core/src/main/groovy/', props.groupFolder),
+  'core/src/test/groovy/groupFolder/': FilenameUtils.concat('core/src/test/groovy/', props.groupFolder),
   'domain/src/main/groovy/groupFolder/': FilenameUtils.concat('domain/src/main/groovy/', props.groupFolder),
-  'client/src/main/java/groupFolder/': FilenameUtils.concat('client/src/main/java/', props.groupFolder)
+  'client/src/main/java/groupFolder/': FilenameUtils.concat('client/src/main/java/', props.groupFolder),
+  'client/src/test/groovy/groupFolder/': FilenameUtils.concat('client/src/test/groovy/', props.groupFolder)
 ]
 
 conversion.each { k, v ->
