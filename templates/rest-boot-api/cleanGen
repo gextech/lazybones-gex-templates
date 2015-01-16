@@ -2,4 +2,4 @@
 
 rm -rf commons/src/generated
 rm -rf api/src/generated
-rm -rf crawl/src/generated
+rm -rf client/src/generated
