@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id" : "map.schema.json",
+  "title": "Map",
+  "description": "A map",
+  "type": "object"
+}
+
