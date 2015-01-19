@@ -25,7 +25,7 @@ CREATE TABLE person_role (
     role_id varchar(255) references role(id)
 );
 
-INSERT INTO person VALUES('test-id', 'test@test.com', 'test', '$2a$10$Mio7zSJymaQX3A9VAzuWguqg7.Cm4DD.cpFUXDeiX4UpbJHCFsS3m', current_timestamp, current_timestamp, 0);
+INSERT INTO person VALUES('test-id', 'test@test.com', 'test', '$2a$10$GOfR..HbTfi2ztSbZOcVXOHw0EYvbh2Que9N0vIy1AmBiEa8M9pYe', current_timestamp, current_timestamp, 0);
 
 INSERT INTO role VALUES('admin-role', 'ROLE_ADMIN', 'Admins have this role', true, current_timestamp, current_timestamp, 0);
 

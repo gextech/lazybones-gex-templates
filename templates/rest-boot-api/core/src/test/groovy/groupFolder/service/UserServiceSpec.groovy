@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat
 
 import ${group}.service.UserService
 import ${group}.dto.v1.User
-import ${group}.exception.ObjectNotFoundException
+import gex.commons.exception.ObjectNotFoundException
 
 import static java.util.Collections.emptyList
 
@@ -34,9 +34,9 @@ class UserServiceSpec extends Specification {
   def "We should be able to create users"() {
     when:
       User user = new User(
-        email: "iamedu@gmail.com",
-        username: "iamedu",
-        password: "iamedu00"
+        email: "user@user.com",
+        username: "user",
+        password: "password"
       )
 
       user = userService.createUser(user)
@@ -48,9 +48,9 @@ class UserServiceSpec extends Specification {
   def "We should be able to update users"() {
     when:
       User user = new User(
-        email: "iamedu@gmail.com",
-        username: "iamedu",
-        password: "iamedu00"
+        email: "user@user.com",
+        username: "user",
+        password: "password"
       )
 
       user = userService.createUser(user)
@@ -62,17 +62,17 @@ class UserServiceSpec extends Specification {
 
     when:
       user = new User(
-        email: "iamedu@gmail.com",
-        username: "ayamedu"
+        email: "user@user.com",
+        username: "theuser"
       )
 
-      user = userService.updateUser("iamedu", user)
+      user = userService.updateUser("user", user)
       String secondId = user.id
       String secondPassword = user.password
 
     then:
       user
-      user.username == "ayamedu"
+      user.username == "theuser"
       firstId
       firstId == secondId
       firstPassword
@@ -81,33 +81,33 @@ class UserServiceSpec extends Specification {
 
   def "We should be able to delete users"() {
     when:
-      User User = new User(
-        email: "iamedu@gmail.com",
-        username: "iamedu",
-        password: "iamedu00"
+      User user = new User(
+        email: "user@user.com",
+        username: "user",
+        password: "password"
       )
 
       user = userService.createUser(user)
 
     then:
       user
-      user.username == "iamedu"
+      user.username == "user"
     
     when:
-      user = userService.findByUsername("iamedu")
+      user = userService.findByUsername("user")
 
     then:
       user
-      user.username == "iamedu"
+      user.username == "user"
 
     when:
-      userService.deleteUser("iamedu")
+      userService.deleteUser("user")
 
-      userService.findByUsername("iamedu")
+      userService.findByUsername("user")
 
     then:    
       ObjectNotFoundException ex = thrown()
-      ex.key == "iamedu"
+      ex.identifier == "user"
   }
 
 }

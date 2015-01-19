@@ -23,9 +23,46 @@ class HelloResourceSpec extends Specification {
 
   def 'We can login'() {
     when:
-      1+1
+      def result = client.getRest().toBlocking().single()
     then:
-      false
+      result.key == 'Hello World'
+  }
+
+  def 'We can not login with invalid username or password'() {
+    when:
+      def newClient = Builder
+        .create()
+        .withLoginData(
+          'test',
+          'password',
+          'passwor',
+          'read write',
+          'clientapp',
+          '123456'
+        )
+        .buildApi()
+
+    then:
+      gex.example.client.v1.ApiException ex = thrown()
+      ex.message == "Cannot login with request data"
+  }
+
+  def 'We can login with username'() {
+    when:
+      def newClient = Builder
+        .create()
+        .withLoginData(
+          'test',
+          'password',
+          'password',
+          'read write',
+          'clientapp',
+          '123456'
+        )
+        .buildApi()
+
+    then:
+      true
   }
 
 }
