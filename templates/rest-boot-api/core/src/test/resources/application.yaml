@@ -1,0 +1,53 @@
+logging:
+  level:
+    org:
+      apache: WARN
+      codehaus.groovy: WARN
+      elasticsearch: WARN
+      flywaydb: WARN
+      glassfish: TRACE
+      hibernate: WARN
+      springframework: WARN
+      springframework.boot: WARN
+      springframework.boot.context.embedded.tomcat: INFO
+      springframework.cache: TRACE
+      springframework.cloud: TRACE
+    gex.jaxrs: DEBUG
+    gex.serling.pub: DEBUG
+    gex.serling.pub.restv1.providers: DEBUG
+    grails: WARN
+
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: ${jdbcUrl}
+    username: ${jdbcUsername}
+    password: ${jdbcPassword}
+    validationInterval: 15000
+    timeBetweenEvictionRunsMillis: 5000
+    minEvictableIdleTimeMillis: 60000
+    maxAge: 600000
+    validationQuery: "SELECT 1;"
+    testOnBorrow: true
+  hibernate:
+    hbm2ddl:
+      auto: none
+    show_sql: true
+    format_sql: true
+  groovy:
+    template:
+      check-template-location: false
+
+flyway:
+  initOnMigrate : true
+
+
+server:
+  port: 9191
+
+management:
+  port: 9192
+
+security.basic.enabled: false
+

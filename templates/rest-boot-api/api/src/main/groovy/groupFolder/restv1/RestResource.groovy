@@ -19,7 +19,7 @@ class RestResource {
 
   @GET
   Response hello() {
-    Response.status(201).entity(response).build()
+    Response.status(201).entity(data).build()
   }
 
   @POST
