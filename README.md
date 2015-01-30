@@ -1,24 +1,33 @@
-Lazybones template project
---------------------------
+# Lazybones Gex Templates
 
-You have just created a simple project for managing your own Lazybones project
-templates. You get a build file (`build.gradle`) and a directory for putting
-your templates in (`templates`).
+This repository hosts some lazybone templates we use at Grupo Expansión. 
+Right now it has a single template for creating Spring Boot APIs that use RAML.
 
-To get started, simply create new directories under the `templates` directory
-and put the source of the different project templates into them. You can then
-package and install the templates locally with the command:
+## Usage
 
-    ./gradlew installAllTemplates
+1. Add following snippet to `~/.lazybones/config.groovy` (If this dir/file doesn't exist, create it)
 
-You'll then be able to use Lazybones to create new projects from these templates.
-If you then want to distribute them, you will need to set up a Bintray account,
-populate the `repositoryUrl`, `repositoryUsername` and `repositoryApiKey` settings
-in `build.gradle`, add new Bintray packages in the repository via the Bintray
-UI, and finally publish the templates with
+    ```groovy
+    bintrayRepositories = [
+        "gextech/lazybone-gex-templates"
+    ]
+    ```
 
-    ./gradlew publishAllTemplates
+2. Do a `lazybones list` to see available templates
 
-You can find out more about creating templates on [the GitHub wiki][1].
+3. Create an app from template (use `--with-git`)
+    `lazybones create <template-name> <version> <dir-name> --with-git`
 
-[1]: https://github.com/pledbrook/lazybones/wiki/Template-developers-guide
+> Note: If you don't have [lazybones] installed, install that first :
+>
+> 1. Install gvm `curl -s get.gvmtool.net | bash`
+>
+> 2. Install lazybones via gvm `gvm install lazybones`
+
+## Creating a Rest Boot API template
+
+* Enter the following command:
+
+    $ lazybones create rest-boot-api 0.1.0 my-boot-api --with-git
+
+
