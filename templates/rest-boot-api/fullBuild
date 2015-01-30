@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
 ./cleanGen
-gradle :raml:npmInstall :raml:installGulp clean build
+./gradlew :raml:npmInstall :raml:installGulp clean build
+
