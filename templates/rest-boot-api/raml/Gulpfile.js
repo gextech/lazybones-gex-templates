@@ -3,7 +3,7 @@ var gulp = require('gulp');
 var raml2code = require("raml2code/index.js");
 var genPojos = require("raml2code/lib/generators/groovy/pojo.js");
 var genJaxRs = require("raml2code/lib/generators/groovy/jaxrsInterface.js");
-var genRetrofit = require("raml2code/lib/generators/groovy/retrofitClient.js");
+var genRetrofit = require("raml2code/lib/generators/java/retrofitClient.js");
 
 
 var raml = require('gulp-raml');
