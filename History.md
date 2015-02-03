@@ -1,4 +1,12 @@
 
+0.1.1 / 2015-02-03
+==================
+
+  * Merge branch 'master' of github.com:gextech/lazybones-gex-templates
+  * Improving gitignore
+  * Merge pull request #2 from gextech/feature/gs-accessing-data-gorm
+  * Enabling ddTo* and removeFrom*
+
 0.1.0 / 2015-02-03
 ==================
 
