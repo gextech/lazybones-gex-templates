@@ -17,20 +17,29 @@ node {
   download = true
 }
 
-//gulp_build.dependsOn 'installGulp'
+gulp_build.dependsOn 'npmInstall'
+defaultTasks 'build'
 
-// If you like comment this line to avoid execute npm install during development
-//gulp_build.dependsOn 'npmInstall'
+def srcDirs = [new File(projectDir, "src/"), new File(projectDir, "package.json")]
+def targetDirs = [new File(rootProject.projectDir, "commons/src/generated"),
+                  new File(rootProject.projectDir, "api/src/generated"),
+                  new File(rootProject.projectDir, "client/src/generated") ]
+gulp_build.inputs.dir srcDirs
 
-defaultTasks 'gulp_build'
+
+gulp_build.outputs.dir targetDirs
+
+clean{
+  delete targetDirs
+}
 
 
-task webjar(type: Jar, dependsOn: "jar") {
-  from(fileTree("src")) {
+jar {
+  from(fileTree("src/")) {
     into "/META-INF/resources/"
   }
   outputs.upToDateWhen { false }
 }
 
-webjar.dependsOn gulp_build
-build.dependsOn webjar
+jar.dependsOn gulp_build
+build.outputs.upToDateWhen {true}
