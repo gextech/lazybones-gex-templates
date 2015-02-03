@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-rm -rf commons/src/generated
-rm -rf api/src/generated
-rm -rf client/src/generated
