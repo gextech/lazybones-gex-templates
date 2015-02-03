@@ -9,7 +9,7 @@ Right now it has a single template for creating Spring Boot APIs that use RAML.
 
     ```groovy
     bintrayRepositories = [
-        "gextech/lazybone-gex-templates"
+        "gextech/oss"
     ]
     ```
 
