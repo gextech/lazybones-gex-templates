@@ -13,7 +13,7 @@ buildscript {
 apply plugin: "uk.co.cacoethes.lazybones-templates"
 
 lazybones {
-    repositoryName = "gextech/oss/lazybones-gex-templates"
+    repositoryName = "gextech/oss"
 
     // It's best to pull this information from a gradle.properties file in the
     // root directory. For example, gradle.properties could contain:
