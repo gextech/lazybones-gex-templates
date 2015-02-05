@@ -1,4 +1,9 @@
 
+0.1.2 / 2015-02-05
+==================
+
+  * Fixing gson provider so it handles dates correctly
+
 0.1.1 / 2015-02-03
 ==================
 
