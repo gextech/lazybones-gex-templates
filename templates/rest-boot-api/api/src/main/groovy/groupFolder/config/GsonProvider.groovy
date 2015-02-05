@@ -2,19 +2,25 @@ package ${group}.config
 
 import org.springframework.beans.factory.annotation.Autowired
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
+import javax.ws.rs.Consumes
+import javax.ws.rs.Produces
+import javax.ws.rs.ext.Provider
+import java.lang.annotation.Annotation
+import java.lang.reflect.Type
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.ext.MessageBodyReader;
-import javax.ws.rs.ext.MessageBodyWriter;
+import javax.ws.rs.WebApplicationException
+import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.MultivaluedMap
+import javax.ws.rs.ext.MessageBodyReader
+import javax.ws.rs.ext.MessageBodyWriter
 
 import com.google.gson.Gson
 
 import java.nio.charset.StandardCharsets
 
+@Provider
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 class GsonProvider <T> implements MessageBodyReader<T>, MessageBodyWriter<T> {
 
   @Autowired
