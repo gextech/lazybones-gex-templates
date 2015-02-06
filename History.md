@@ -1,4 +1,12 @@
 
+0.1.3 / 2015-02-06
+==================
+
+  * Adding docker recipe
+  * Removing old cleanGen script
+  * Updating history
+  * Fixing gson provider so it handles dates correctly
+
 0.1.2 / 2015-02-05
 ==================
 
