@@ -5,13 +5,14 @@ def props = [:]
 props.group = ask("Define value for 'group' [gex.example]: ", "gex.example", "group")
 props.projectName = ask("Define value for 'projectName' [sample-project]: ", "sample-project", "projectName")
 props.version = ask("Define value for 'version' [0.1.0-SNAPSHOT]: ", "0.1.0-SNAPSHOT", "version")
-props.jdbcUrl = ask("Define value for 'jdbcUrl' [jdbc:postgresql://postgres:5432/rest_api]: ", "jdbc:postgresql://postgres:5432/rest_api", "jdbcUrl")
+props.dockerPrefix = props.projectName.replaceAll('-', '').replaceAll('_', '')
+props.jdbcUrl = ask("Define value for 'jdbcUrl' [jdbc:postgresql://${props.dockerPrefix}postgres:5432/rest_api]: ", "jdbc:postgresql://${props.dockerPrefix}postgres:5432/rest_api".toString(), "jdbcUrl")
 props.jdbcUsername = ask("Define value for 'jdbcUsername' [dbuser]: ", "dbuser", "jdbcUsername")
 props.jdbcPassword = ask("Define value for 'jdbcPassword' [dbpass]: ", "dbpass", "jdbcPassword")
 
 props.groupFolder = props.group.replace('.' as char, '/' as char)
 
-
+processTemplates "docker/fig.yml", props
 processTemplates "**/application.yaml", props
 processTemplates "gradle.properties", props
 processTemplates "raml/package.json", props

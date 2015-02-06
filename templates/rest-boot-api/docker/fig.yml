@@ -1,0 +1,20 @@
+app:
+  image: dockerfile/java:oracle-java8
+  working_dir: /app/api
+  command: ./gradlew clean :api:bootRun --project-cache-dir /app/api
+  environment:
+    GRADLE_OPTS: "-Dgradle.user.home=/app/.user_gradle"
+  volumes:
+    - ../:/app/api/
+    - ~/.gradle:/app/.user_gradle
+  links:
+    - ${dockerPrefix}postgres
+  ports:
+    - 9191:9191
+    - 9192:9192
+
+${dockerPrefix}postgres:
+  build: database
+  ports:
+    - 5432:5432
+
