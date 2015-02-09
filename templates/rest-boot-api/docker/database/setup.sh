@@ -2,9 +2,9 @@
 echo "******CREATING DOCKER DATABASE******"
 
 gosu postgres postgres --single <<- EOSQL
-   CREATE DATABASE pub_integration;
-   CREATE ROLE userpub WITH LOGIN PASSWORD 'dbuser';
-   GRANT ALL PRIVILEGES ON DATABASE pub_integration TO userpub;
+   CREATE DATABASE ${jdbcDb};
+   CREATE ROLE ${jdbcUsername} WITH LOGIN PASSWORD '${jdbcPassword}';
+   GRANT ALL PRIVILEGES ON DATABASE ${jdbcDb} TO ${jdbcUsername};
 EOSQL
 
 echo ""

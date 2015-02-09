@@ -4,6 +4,7 @@ app:
   command: ./gradlew clean :api:bootRun --project-cache-dir /app/api
   environment:
     GRADLE_OPTS: "-Dgradle.user.home=/app/.user_gradle"
+    SPRING_DATASOURCE_URL: jdbc:postgresql://${dockerPrefix}postgres:5432/${jdbcDb}
   volumes:
     - ../:/app/api/
     - ~/.gradle:/app/.user_gradle

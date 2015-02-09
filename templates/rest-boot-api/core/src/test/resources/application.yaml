@@ -21,7 +21,7 @@ logging:
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
-    url: ${jdbcUrl}
+    url: jdbc:postgresql://${jdbcHost}:${jdbcPort}/${jdbcDb}
     username: ${jdbcUsername}
     password: ${jdbcPassword}
     validationInterval: 15000
