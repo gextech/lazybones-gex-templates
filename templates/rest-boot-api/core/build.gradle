@@ -14,10 +14,15 @@ buildscript {
 apply plugin: 'watch'
 
 def boot_starters = ['jdbc']
+def cloud_starters = ['hystrix']
 
 dependencies {
   boot_starters.each { name ->
     compile("org.springframework.boot:spring-boot-starter-${name}:${project.springBootVersion}")
+  }
+
+  cloud_starters.each { name ->
+    compile("org.springframework.cloud:spring-cloud-starter-${name}:${project.springCloudVersion}")
   }
 
   compile project(':commons')
@@ -37,6 +42,7 @@ dependencies {
   runtime 'org.postgresql:postgresql:9.3-1102-jdbc41'
   runtime 'org.flywaydb:flyway-core:3.0'
 
+  testCompile "com.squareup.okhttp:mockwebserver:${project.okhttpVersion}"
   testCompile ("org.springframework.boot:spring-boot-starter-web:${project.springBootVersion}")
 
   testCompile "org.spockframework:spock-spring:${project.spockVersion}"

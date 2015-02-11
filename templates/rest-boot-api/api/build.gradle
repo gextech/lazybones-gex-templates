@@ -15,10 +15,15 @@ buildscript {
 apply plugin: 'spring-boot'
 apply plugin: 'watch'
 def boot_starters = ['logging', 'web', 'actuator', 'jersey', 'security']
+def cloud_starters = ['hystrix']
 
 dependencies {
   boot_starters.each { name ->
     compile("org.springframework.boot:spring-boot-starter-${name}:${project.springBootVersion}")
+  }
+
+  cloud_starters.each { name ->
+    compile("org.springframework.cloud:spring-cloud-starter-${name}:${project.springCloudVersion}")
   }
 
   compile project(":core")
