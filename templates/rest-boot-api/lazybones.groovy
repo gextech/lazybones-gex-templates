@@ -18,6 +18,7 @@ processTemplates "docker/fig.yml", props
 processTemplates "docker/database/setup.sh", props
 processTemplates "**/application.yaml", props
 processTemplates "gradle.properties", props
+processTemplates "js-client/package.json", props
 processTemplates "raml/package.json", props
 processTemplates "raml/Gulpfile.js", props
 processTemplates "raml/src/index.raml", props

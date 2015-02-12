@@ -33,5 +33,4 @@ Code is generated using node, but we download that for you if you don't have it,
 There are a couple of scripts that you can use for help:
 
 * `./fullBuild` It generates everything
-* `./cleanGen` Cleans generated content
 
