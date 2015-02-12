@@ -1,4 +1,14 @@
 
+0.1.5 / 2015-02-12
+==================
+
+  * Adding popsicle dependencies
+  * Merge pull request #4 from gextech/feature/jsclient
+  * Adding js client generation
+  * Merge pull request #3 from gextech/feature/hystrix
+  * Adding sample with hystrix
+  * Adding hystrix starter
+
 0.1.4 / 2015-02-09
 ==================
 
