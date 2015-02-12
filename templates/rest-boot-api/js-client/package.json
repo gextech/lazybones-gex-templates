@@ -1,5 +1,0 @@
-{
-    "name": "${projectName}-client",
-    "version": "${version}",
-    "main": "./v1/apiClientClient.js"
-}

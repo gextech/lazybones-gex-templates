@@ -4,7 +4,6 @@ var raml2code = require("raml2code/index.js");
 var genPojos = require("raml2code/lib/generators/groovy/pojo.js");
 var genJaxRs = require("raml2code/lib/generators/groovy/jaxrsInterface.js");
 var genRetrofit = require("raml2code/lib/generators/java/retrofitClient.js");
-var genJsClient = require("raml2code/lib/generators/javascript/jsClient");
 
 
 var raml = require('gulp-raml');
@@ -38,11 +37,6 @@ gulp.task("genClient" , ['raml'], function(){
         .pipe(gulp.dest('../client/src/generated/groovy/${groupFolder}/client'));
 });
 
-gulp.task("genJsClient" , ['raml'], function(){
-  gulp.src('./src/index.raml')
-    .pipe(raml2code({generator: genJsClient, extra: {package: packageClient, importPojos: packagePojo}}))
-    .pipe(gulp.dest('../js-client'));
-});
 
 gulp.task('apidoc', function() {
     return gulp.src('./src/*')
@@ -50,5 +44,4 @@ gulp.task('apidoc', function() {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['raml', 'genPojos', 'genJaxRs', 'genClient', 'genJsClient' ]);
-
+gulp.task('build', ['raml', 'genPojos', 'genJaxRs', 'genClient' ]);
