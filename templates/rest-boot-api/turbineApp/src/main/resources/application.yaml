@@ -1,0 +1,25 @@
+logging:
+  level:
+    org:
+      apache: WARN
+      codehaus.groovy: WARN
+      elasticsearch: WARN
+      flywaydb: WARN
+      glassfish: TRACE
+      hibernate: WARN
+      springframework: WARN
+      springframework.boot: WARN
+      springframework.boot.context.embedded.tomcat: INFO
+      springframework.cache: WARN
+      springframework.cloud: WARN
+      springframework.security: INFO
+      springframework.security.web: WARN
+    alosh: DEBUG
+
+endpoints.health.sensitive: false
+
+spring.groovy.template.check-template-location: false
+
+server.port: 4333
+
+management.port: 4332

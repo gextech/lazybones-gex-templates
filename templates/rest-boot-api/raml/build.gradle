@@ -11,7 +11,7 @@ apply plugin: 'gulp'
 
 node {
   // Version of node to use.
-  version = '0.10.28'
+  version = '0.10.36'
 
   // Enabled the automatic download.
   download = true

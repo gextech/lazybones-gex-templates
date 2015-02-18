@@ -25,6 +25,9 @@ dependencies {
   cloud_starters.each { name ->
     compile("org.springframework.cloud:spring-cloud-starter-${name}:${project.springCloudVersion}")
   }
+  compile "org.springframework.cloud:spring-cloud-netflix-hystrix-amqp:${project.springCloudVersion}"
+  compile 'org.springframework.integration:spring-integration-java-dsl:1.0.0.RELEASE'
+  compile 'org.springframework.integration:spring-integration-amqp:4.1.1.RELEASE'
 
   compile project(":core")
 
