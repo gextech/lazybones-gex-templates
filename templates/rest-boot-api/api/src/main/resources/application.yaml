@@ -51,3 +51,6 @@ management:
 
 security.basic.enabled: false
 
+hystrix.stream.amqp: true
+spring.rabbitmq.host: localhost
+

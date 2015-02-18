@@ -1,0 +1,23 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+apply plugin: 'spring-boot'
+
+def boot_starters = ['web', 'security', 'actuator']
+
+dependencies {
+  boot_starters.each { name ->
+    compile("org.springframework.boot:spring-boot-starter-${name}:${project.springBootVersion}")
+  }
+
+  compile "org.codehaus.groovy:groovy-all:${project.groovyVersion}"
+
+  compile "org.springframework.cloud:spring-cloud-starter-turbine-amqp:${project.springCloudVersion}"
+
+}

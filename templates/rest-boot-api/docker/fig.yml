@@ -1,15 +1,43 @@
+web:
+  image: dockerfile/java:oracle-java8
+  working_dir: /app/web
+  command: java -jar web-${version}.jar
+  environment: 
+    SPRING_RABBITMQ_HOST: ${dockerPrefix}rabbitmq
+  volumes:
+    - ../web/build/libs/:/app/web/
+  ports:
+    - 3333:3333
+    - 3332:3332
+  links:
+    - ${dockerPrefix}rabbitmq
+
+turbine:
+  image: dockerfile/java:oracle-java8
+  working_dir: /app/turbine
+  command: java -jar turbineApp-${version}.jar
+  environment:
+    SPRING_RABBITMQ_HOST: ${dockerPrefix}rabbitmq
+  volumes:
+    - ../turbineApp/build/libs/:/app/turbine/
+  ports:
+    - 4333:4333
+    - 4332:4332
+  links:
+    - ${dockerPrefix}rabbitmq
+
 app:
   image: dockerfile/java:oracle-java8
   working_dir: /app/api
-  command: ./gradlew clean :api:bootRun --project-cache-dir /app/api
+  command: java -jar api-${version}.jar 
   environment:
-    GRADLE_OPTS: "-Dgradle.user.home=/app/.user_gradle"
     SPRING_DATASOURCE_URL: jdbc:postgresql://${dockerPrefix}postgres:5432/${jdbcDb}
+    SPRING_RABBITMQ_HOST: ${dockerPrefix}rabbitmq
   volumes:
-    - ../:/app/api/
-    - ~/.gradle:/app/.user_gradle
+    - ../api/build/libs/:/app/api/
   links:
     - ${dockerPrefix}postgres
+    - ${dockerPrefix}rabbitmq
   ports:
     - 9191:9191
     - 9192:9192
@@ -18,4 +46,10 @@ ${dockerPrefix}postgres:
   build: database
   ports:
     - 5432:5432
+
+${dockerPrefix}rabbitmq:
+  image: dockerfile/rabbitmq
+  ports:
+    - 15672:15672
+    - 5672:5672
 
