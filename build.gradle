@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "uk.co.cacoethes:lazybones-gradle:1.2.1"
+        classpath "uk.co.cacoethes:lazybones-gradle:1.2.3"
     }
 }
 
@@ -23,6 +23,6 @@ lazybones {
     //
     // You could then set the following properties to `project.bintrayUsername`
     // and `project.bintrayApiKey` respectively.
-    repositoryUsername = project.bintrayUsername
-    repositoryApiKey = project.bintrayApiKey
+    repositoryUsername = project.hasProperty('bintrayUsername') ? bintrayUsername : ''
+    repositoryApiKey = project.hasProperty('bintrayApiKey') ? bintrayApiKey : ''
 }
