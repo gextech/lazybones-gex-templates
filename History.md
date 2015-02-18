@@ -1,4 +1,20 @@
 
+0.1.6 / 2015-02-18
+==================
+
+  * Merge pull request #5 from gextech/feature/turbine
+  * Adding xkcd test for hystrix
+  * Upgrading to gradle 2.3
+  * Adding turbine
+  * Upgrading changelog for 0.1.5
+  * Upgrading version
+  * Adding popsicle dependencies
+  * Merge pull request #4 from gextech/feature/jsclient
+  * Adding js client generation
+  * Merge pull request #3 from gextech/feature/hystrix
+  * Adding sample with hystrix
+  * Adding hystrix starter
+
 0.1.5 / 2015-02-12
 ==================
 
