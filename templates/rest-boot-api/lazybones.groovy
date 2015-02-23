@@ -1,19 +1,35 @@
+@Grab(group="uk.co.cacoethes", module="groovy-handlebars-engine", version="0.2")
+import uk.co.cacoethes.handlebars.HandlebarsTemplateEngine
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.FilenameUtils
+
+registerEngine "hbs", new HandlebarsTemplateEngine()
 
 def props = [:]
 props.group = ask("Define value for 'group' [gex.example]: ", "gex.example", "group")
 props.projectName = ask("Define value for 'projectName' [sample-project]: ", "sample-project", "projectName")
 props.version = ask("Define value for 'version' [0.1.0-SNAPSHOT]: ", "0.1.0-SNAPSHOT", "version")
-props.dockerPrefix = props.projectName.replaceAll('-', '').replaceAll('_', '')
 props.jdbcHost = ask("Define value for 'jdbcHost' [localhost]: ", "localhost", "jdbcHost")
 props.jdbcPort = ask("Define value for 'jdbcPort' [5432]: ", "5432", "jdbcPort")
 props.jdbcDb = ask("Define value for 'jdbcDb' [rest_api]: ", "rest_api", "jdbcDb")
 props.jdbcUsername = ask("Define value for 'jdbcUsername' [dbuser]: ", "dbuser", "jdbcUsername")
 props.jdbcPassword = ask("Define value for 'jdbcPassword' [dbpass]: ", "dbpass", "jdbcPassword")
+props.includeClient = ask("Do you want to include the java client?: [Y] ", "Y", "includeClient")?.toLowerCase() == 'y'
+props.includeJsClient = ask("Do you want to include the js client?: [Y] ", "Y", "includeJsClient")?.toLowerCase() == 'y'
+props.includeHystrix = ask("Do you want to include hystrix?: [Y] ", "Y", "includeHystrix")?.toLowerCase() == 'y'
+if(props.includeHystrix) {
+  props.includeHystrixMonitoring = ask("Do you want to include hystrix monitoring?: [Y] ", "Y", "includeHystrixMonitoring")?.toLowerCase() == 'y'
+} else {
+  props.includeHystrixMonitoring = false
+}
+props.includeDocker = ask("Do you want to include docker and fig templates?: [Y] ", "Y", "includeDocker")?.toLowerCase() == 'y'
 
+props.dockerPrefix = props.projectName.replaceAll('-', '').replaceAll('_', '')
 props.groupFolder = props.group.replace('.' as char, '/' as char)
 
+processTemplates "settings.gradle", props
+processTemplates "api/build.gradle", props
+processTemplates "core/build.gradle", props
 processTemplates "docker/fig.yml", props
 processTemplates "docker/database/setup.sh", props
 processTemplates "**/application.yaml", props
@@ -45,3 +61,38 @@ conversion.each { k, v ->
   FileUtils.moveDirectory(originApiFolder, destFolder)
 }
 
+if(!props.includeClient) {
+  FileUtils.forceDelete(new File(projectDir, "client"))
+}
+
+if(!props.includeJsClient) {
+  FileUtils.forceDelete(new File(projectDir, "js-client"))
+}
+
+if(!props.includeHystrix) {
+  def apiRoot = new File(projectDir, conversion['api/src/main/groovy/groupFolder/'])
+  def coreRoot = new File(projectDir, conversion['core/src/main/groovy/groupFolder/'])
+  def clientTestRoot = new File(projectDir, conversion['client/src/test/groovy/groupFolder/'])
+  def files = [
+    new File(apiRoot, 'restv1/XkcdResourceV1.groovy'),
+    new File(clientTestRoot, 'XkcdResourceSpec.groovy'),
+    new File(coreRoot, 'service/impl/XkcdServiceImpl.groovy'),
+    new File(coreRoot, 'service/XkcdService.groovy')
+  ]
+  files.each {
+    if(it.exists()) {
+      FileUtils.forceDelete(it)
+    }
+  }
+}
+
+if(!props.includeHystrixMonitoring) {
+  def hystrixDirectories = ['web', 'turbineApp']
+  hystrixDirectories.each {
+    FileUtils.forceDelete(new File(projectDir, it))
+  }
+}
+
+if(!props.includeDocker) {
+  FileUtils.forceDelete(new File(projectDir, "docker"))
+}
