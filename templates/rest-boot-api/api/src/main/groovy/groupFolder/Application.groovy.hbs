@@ -1,12 +1,16 @@
-package ${group}
+package {{group}}
 
 import org.springframework.boot.autoconfigure.SpringBootApplication 
+{{#if includeHystrix}}
 import org.springframework.cloud.netflix.hystrix.EnableHystrix
+{{/if}}
 
 import static org.springframework.boot.SpringApplication.run
 
 @SpringBootApplication
+{{#if includeHystrix}}
 @EnableHystrix
+{{/if}}
 class Application {
   static void main(String[] args) {
     run Application, args

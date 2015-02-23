@@ -27,7 +27,6 @@ class XkcdResourceSpec extends Specification {
     then:
       result
       result.img
-      result.link
   }
 
 }

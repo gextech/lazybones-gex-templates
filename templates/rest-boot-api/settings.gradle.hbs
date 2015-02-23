@@ -3,8 +3,14 @@ include 'commons'
 include 'domain'
 include 'core'
 include 'api'
+{{#if includeClient}}
 include 'client'
+{{/if}}
+{{#if includeJsClient}}
 include 'js-client'
+{{/if}}
+{{#if includeHystrixMonitoring}}
 include 'turbineApp'
 include 'web'
+{{/if}}
 

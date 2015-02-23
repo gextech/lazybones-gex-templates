@@ -8,9 +8,9 @@ var genJsClient = require("raml2code/lib/generators/javascript/jsClient");
 
 
 var raml = require('gulp-raml');
-var packagePojo = "${group}.dto";
-var packageJaxRs = "${group}.jaxrs";
-var packageClient = "${group}.client";
+var packagePojo = "{{group}}.dto";
+var packageJaxRs = "{{group}}.jaxrs";
+var packageClient = "{{group}}.client";
 
 gulp.task('raml', function() {
     gulp.src('./src/index.raml')
@@ -22,27 +22,31 @@ gulp.task('raml', function() {
 gulp.task("genPojos", ['raml'], function(){
     gulp.src('./src/index.raml')
         .pipe(raml2code({generator: genPojos, extra: {package: packagePojo}}))
-        .pipe(gulp.dest('../commons/src/generated/groovy/${groupFolder}/dto'));
+        .pipe(gulp.dest('../commons/src/generated/groovy/{{groupFolder}}/dto'));
 });
 
 gulp.task("genJaxRs" , ['raml'], function(){
     gulp.src('./src/index.raml')
         .pipe(raml2code({generator: genJaxRs, extra: {package: packageJaxRs, importPojos: packagePojo}}))
-        .pipe(gulp.dest('../api/src/generated/groovy/${groupFolder}/jaxrs'));
+        .pipe(gulp.dest('../api/src/generated/groovy/{{groupFolder}}/jaxrs'));
 });
 
 
+{{#if includeClient}}
 gulp.task("genClient" , ['raml'], function(){
     gulp.src('./src/index.raml')
         .pipe(raml2code({generator: genRetrofit, extra: {package: packageClient, importPojos: packagePojo}}))
-        .pipe(gulp.dest('../client/src/generated/groovy/${groupFolder}/client'));
+        .pipe(gulp.dest('../client/src/generated/groovy/{{groupFolder}}/client'));
 });
+{{/if}}
 
+{{#if includeJsClient}}
 gulp.task("genJsClient" , ['raml'], function(){
   gulp.src('./src/index.raml')
     .pipe(raml2code({generator: genJsClient, extra: {package: packageClient, importPojos: packagePojo}}))
     .pipe(gulp.dest('../js-client'));
 });
+{{/if}}
 
 gulp.task('apidoc', function() {
     return gulp.src('./src/*')
@@ -50,5 +54,15 @@ gulp.task('apidoc', function() {
         .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['raml', 'genPojos', 'genJaxRs', 'genClient', 'genJsClient' ]);
+gulp.task('build', [
+  'raml',
+  'genPojos',
+  'genJaxRs',
+  {{#if includeClient}}
+  'genClient',
+  {{/if}}
+  {{#if includeJsClient}}
+  'genJsClient',
+  {{/if}}
+]);
 
