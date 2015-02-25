@@ -1,4 +1,12 @@
 
+0.1.9 / 2015-02-25
+==================
+
+  * Using better docker names
+  * Using latest version in README
+  * Merge pull request #8 from gextech/bug/grabMissingDependency
+  * added jcenter
+
 0.1.8 / 2015-02-23
 ==================
 
