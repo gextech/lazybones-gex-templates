@@ -1,3 +1,4 @@
+@GrabResolver(name='jcenter', root='http://jcenter.bintray.com/')
 @Grab(group="uk.co.cacoethes", module="groovy-handlebars-engine", version="0.2")
 import uk.co.cacoethes.handlebars.HandlebarsTemplateEngine
 import org.apache.commons.io.FileUtils
