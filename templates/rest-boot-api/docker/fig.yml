@@ -1,4 +1,4 @@
-web:
+${dockerPrefix}web:
   image: dockerfile/java:oracle-java8
   working_dir: /app/web
   command: java -jar web-${version}.jar
@@ -12,7 +12,7 @@ web:
   links:
     - ${dockerPrefix}rabbitmq
 
-turbine:
+${dockerPrefix}turbine:
   image: dockerfile/java:oracle-java8
   working_dir: /app/turbine
   command: java -jar turbineApp-${version}.jar
@@ -26,7 +26,7 @@ turbine:
   links:
     - ${dockerPrefix}rabbitmq
 
-app:
+${dockerPrefix}app:
   image: dockerfile/java:oracle-java8
   working_dir: /app/api
   command: java -jar api-${version}.jar 
