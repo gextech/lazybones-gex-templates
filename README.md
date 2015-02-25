@@ -34,6 +34,6 @@ Right now it has a single template for creating Spring Boot APIs that use RAML.
 
 * Enter the following command:
 
-    $ lazybones create rest-boot-api 0.1.0 my-boot-api --with-git
+    $ lazybones create rest-boot-api my-boot-api --with-git
 
 
