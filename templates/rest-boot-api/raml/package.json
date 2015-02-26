@@ -7,7 +7,8 @@
         "gulp-raml": "0.1.2",
         "gulp-raml2html": "^0.1.7",
         "raml-parser": "0.8.7",
-        "raml2code": "0.8.39"
+        "raml2code": "0.8.39",
+        "gulp-util": "^3.0.4"
     },
     "dependencies": {
         "raml-mocker": "^0.1.4"

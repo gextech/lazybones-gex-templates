@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 
 var raml2code = require("raml2code/index.js");
 var genPojos = require("raml2code/lib/generators/groovy/pojo.js");
@@ -22,12 +23,14 @@ gulp.task('raml', function() {
 gulp.task("genPojos", ['raml'], function(){
     gulp.src('./src/index.raml')
         .pipe(raml2code({generator: genPojos, extra: {package: packagePojo}}))
+        .on('error', gutil.log)
         .pipe(gulp.dest('../commons/src/generated/groovy/{{groupFolder}}/dto'));
 });
 
 gulp.task("genJaxRs" , ['raml'], function(){
     gulp.src('./src/index.raml')
         .pipe(raml2code({generator: genJaxRs, extra: {package: packageJaxRs, importPojos: packagePojo}}))
+        .on('error', gutil.log)
         .pipe(gulp.dest('../api/src/generated/groovy/{{groupFolder}}/jaxrs'));
 });
 
@@ -36,6 +39,7 @@ gulp.task("genJaxRs" , ['raml'], function(){
 gulp.task("genClient" , ['raml'], function(){
     gulp.src('./src/index.raml')
         .pipe(raml2code({generator: genRetrofit, extra: {package: packageClient, importPojos: packagePojo}}))
+        .on('error', gutil.log)
         .pipe(gulp.dest('../client/src/generated/groovy/{{groupFolder}}/client'));
 });
 {{/if}}
@@ -44,6 +48,7 @@ gulp.task("genClient" , ['raml'], function(){
 gulp.task("genJsClient" , ['raml'], function(){
   gulp.src('./src/index.raml')
     .pipe(raml2code({generator: genJsClient, extra: {package: packageClient, importPojos: packagePojo}}))
+    .on('error', gutil.log)
     .pipe(gulp.dest('../js-client'));
 });
 {{/if}}
