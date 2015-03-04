@@ -23,7 +23,7 @@ if(props.includeHystrix) {
 } else {
   props.includeHystrixMonitoring = false
 }
-props.includeDocker = ask("Do you want to include docker and fig templates?: [Y] ", "Y", "includeDocker")?.toLowerCase() == 'y'
+props.includeDocker = ask("Do you want to include docker and docker-compose templates?: [Y] ", "Y", "includeDocker")?.toLowerCase() == 'y'
 
 props.dockerPrefix = props.projectName.replaceAll('-', '').replaceAll('_', '')
 props.groupFolder = props.group.replace('.' as char, '/' as char)
@@ -31,7 +31,7 @@ props.groupFolder = props.group.replace('.' as char, '/' as char)
 processTemplates "settings.gradle", props
 processTemplates "api/build.gradle", props
 processTemplates "core/build.gradle", props
-processTemplates "docker/fig.yml", props
+processTemplates "docker/docker-compose.yml", props
 processTemplates "docker/database/setup.sh", props
 processTemplates "**/application.yaml", props
 processTemplates "gradle.properties", props

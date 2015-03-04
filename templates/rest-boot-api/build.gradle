@@ -29,6 +29,19 @@ allprojects {
      // testLogging.showStandardStreams = true
    }
 
+   configurations.all {
+     resolutionStrategy.eachDependency { details ->
+        def hystrixDeps = [
+          'hystrix-core',
+          'hystrix-metrics-event-stream'
+        ]
+
+        if (hystrixDeps.contains(details.requested.name)) {
+          details.useVersion project.hystrixVersion
+        }
+     }
+   }
+
    sourceSets { 
      main { 
        java {
