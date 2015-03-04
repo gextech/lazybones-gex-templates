@@ -97,3 +97,25 @@ if(!props.includeHystrixMonitoring) {
 if(!props.includeDocker) {
   FileUtils.forceDelete(new File(projectDir, "docker"))
 }
+
+if (hasFeature("scmExclusions")) {
+    scmExclusions ".gradle",
+        "build",
+        "out",
+        ".gradletasknamecache",
+        "*.iml",
+        "*.ipr",
+        "*.iws",
+        "*.idea",
+        "README.html",
+        "*.log",
+        "node_modules/",
+        "generated/",
+        "2.2/",
+        "2.3/",
+        "out.txt",
+        "*.lock",
+        "*.bin",
+        "*.jar",
+        "*.class"
+}
