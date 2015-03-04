@@ -1,4 +1,19 @@
 
+0.1.12 / 2015-03-04
+==================
+
+  * Fixing versions and adding gitignore
+
+0.1.11 / 2015-03-03
+==================
+
+  * Updating dependency versions, and changing fig name
+
+0.1.10 / 2015-03-02
+==================
+
+  * Updating dependency versions
+
 0.1.9 / 2015-02-25
 ==================
 
