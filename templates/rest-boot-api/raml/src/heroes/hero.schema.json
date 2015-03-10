@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id" : "heroes/hero.schema.json",
+  "title": "Hero",
+  "description": "A hero definition.",
+  "type": "object",
+  "properties": {
+
+    "name": {
+      "description": "Name of the hero",
+      "type": "string",
+      "minLength" : 3,
+      "maxLength" : 100
+    },
+
+    "age" : {
+      "type" : "integer"
+    },
+
+    "immortal" : {
+      "type" : "boolean"
+    }
+
+  },
+  "required": ["name"]
+}

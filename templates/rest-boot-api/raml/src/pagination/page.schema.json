@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "pagination/page.schema.json",
+  "title": "Page",
+  "description": "The metadata of a page",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer"
+    },
+    "from": {
+      "type": "integer"
+    },
+    "pageCount": {
+      "type": "integer"
+    },
+    "currentPage": {
+      "type": "integer"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "pageTotal": {
+      "type": "integer"
+    },
+    "hasNext": {
+      "type": "boolean"
+    },
+    "hasPrev": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "total",
+    "from",
+    "pageCount",
+    "currentPage",
+    "size",
+    "pageTotal",
+    "hasNext",
+    "hasPrev"
+  ]
+}

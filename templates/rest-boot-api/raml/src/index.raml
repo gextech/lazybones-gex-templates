@@ -11,6 +11,9 @@ schemas:
   - simpleOK: !include simpleOK.schema.json
   - user: !include users/user.schema.json
   - map: !include map.schema.json
+  - hero  : !include heroes/hero.schema.json
+  - heroes : !include heroes/heroes.schema.json
+  - pageMeta: !include pagination/page.schema.json
 
 resourceTypes: !include resourcesTypes.raml
 
@@ -29,3 +32,11 @@ resourceTypes: !include resourcesTypes.raml
       200:
         body:
           schema: map
+          
+/heroes:
+  displayName: Heroes
+  type: collection
+
+  /{name}:
+    displayName: Hero
+    type: member
