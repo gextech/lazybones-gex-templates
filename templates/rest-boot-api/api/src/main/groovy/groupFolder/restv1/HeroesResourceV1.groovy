@@ -9,6 +9,7 @@ import gex.jaxrs.ApiResponse
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 
+import javax.ws.rs.QueryParam
 import javax.ws.rs.PathParam
 
 import javax.ws.rs.core.Response
@@ -25,8 +26,11 @@ class HeroesResourceV1 implements HeroesResource{
   HeroService heroService
 
   @Override
-  Response getHeroes() {
-    ok(heroService.listHeroes())
+  Response getHeroes(
+    @QueryParam("from")Long from, @QueryParam("size")Long size){
+    from = (from == null) ? 0 : from
+    size = (size == null) ? 10 : size
+    ok(heroService.listHeroes(from, size))
   }
 
   @Override

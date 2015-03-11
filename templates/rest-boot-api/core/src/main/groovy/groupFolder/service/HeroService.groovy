@@ -1,12 +1,14 @@
 package ${group}.service
 
 import ${group}.dto.v1.Hero
+import ${group}.dto.v1.HeroPage
+import gex.example.dto.v1.HeroPage
 
 interface HeroService {
 
   Hero createHero(Hero hero)
 
-  List<Hero> listHeroes()
+  HeroPage listHeroes(Long from, Long size)
 
   Hero getHeroByName(String name)
 

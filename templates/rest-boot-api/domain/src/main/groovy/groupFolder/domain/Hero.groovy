@@ -2,11 +2,13 @@ package ${group}.domain
 
 import grails.persistence.*
 
+import gex.data.Persistable
+
 import org.jadira.usertype.dateandtime.joda.PersistentDateTime
 import org.joda.time.DateTime
 
 @Entity
-class Hero {
+class Hero implements Persistable{
 
   String id
   String name
