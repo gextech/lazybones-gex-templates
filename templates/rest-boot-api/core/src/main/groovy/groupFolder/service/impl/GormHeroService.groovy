@@ -16,7 +16,7 @@ class GormHeroService implements HeroService {
     gex.example.domain.Hero domainHero = bind(hero, gex.example.domain.Hero)
     domainHero.validate()
     if (domainHero.hasErrors()) {
-      throw new DomainClassValidationException(domainHero)
+      throw new EntityValidationException(domainHero)
     }
     domainHero.save(failOnError: true)
     bind(domainHero, Hero)

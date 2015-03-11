@@ -1,10 +1,7 @@
 package ${group}.restv1
 
-import gex.javax.ws.rs.Resource
-import org.springframework.beans.factory.annotation.Autowired
-
-import ${group}.domain.v1.Hero
-import ${group}.jaxrs.v1.HeroResource
+import ${group}.domain.Hero
+import ${group}.jaxrs.v1.HeroesResource
 import ${group}.service.HeroService
 
 import gex.javax.ws.rs.Resource
@@ -18,7 +15,7 @@ import javax.ws.rs.core.Response
 
 @Resource
 @Slf4j
-class HeroResourceV1 implements HeroResource{
+class HeroesResourceV1 implements HeroesResource{
 
   @Autowired
   @Delegate
@@ -28,20 +25,12 @@ class HeroResourceV1 implements HeroResource{
   HeroService heroService
 
   @Override
-  Response getHero(@PathParam("name") String name) {
-    ok(heroService.getHeroByName(name))
+  Response getHeroes() {
+    ok(heroService.listHeroes())
   }
 
   @Override
-  Response putHero(@PathParam("name") String name, Hero hero) {
-    ok(heroService.updateHero(name, hero))
-  }
-
-  @Override
-  Response deleteHero(@PathParam("name") String name) {
-    heroService.deleteHero(name)
-    noContent()
+  Response postHeroes(Hero hero) {
+    created(heroService.createHero(hero))
   }
 }
-
-

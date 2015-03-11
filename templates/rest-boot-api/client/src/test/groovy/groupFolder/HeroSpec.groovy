@@ -1,8 +1,7 @@
 package ${group}
 
 import ${group}.client.v1.*
-import ${group}.dto.Hero
-import org.springframework.beans.factory.annotation.Value 
+import ${group}.dto.v1.Hero
 import org.springframework.test.context.ContextConfiguration 
 import org.springframework.test.context.web.WebAppConfiguration
 import org.springframework.boot.test.SpringApplicationContextLoader
