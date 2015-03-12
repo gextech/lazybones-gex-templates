@@ -1,4 +1,9 @@
 
+0.1.15 / 2015-03-12
+==================
+
+  * Fixing hardcoded ${group} variable in CommonServiceHelper
+
 0.1.14 / 2015-03-12
 ==================
 
