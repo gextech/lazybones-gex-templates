@@ -28,7 +28,7 @@ class CommonServiceHelper {
       it.domain == domainClazz
     }
 
-    Class dtoClazz = equivalence?.dto ?: Class.forName("gex.serling.pub.dto.v1.\${domainClazz.simpleName}")
+    Class dtoClazz = equivalence?.dto ?: Class.forName("${group}.dto.v1.\${domainClazz.simpleName}")
 
     if(!dtoTransformation) {
       dtoTransformation = { x -> util.dynamicBind(x, dtoClazz) }
@@ -38,7 +38,7 @@ class CommonServiceHelper {
       dtoTransformation.call(it)
     }
 
-    Class pageClazz = equivalence?.page ?: Class.forName("gex.serling.pub.dto.v1.\${domainClazz.simpleName}Page")
+    Class pageClazz = equivalence?.page ?: Class.forName("${group}.dto.v1.\${domainClazz.simpleName}Page")
 
     mapPage.asType(pageClazz)
   }
