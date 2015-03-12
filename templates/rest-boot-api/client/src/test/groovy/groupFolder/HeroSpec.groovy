@@ -51,6 +51,9 @@ class HeroSpec extends Specification{
       response.name == 'Goku'
       response.age == 12
       response.immortal == false
+
+    cleanup:
+      apiClient.deleteHero('Goku').toBlocking().first()
   }
 
 }

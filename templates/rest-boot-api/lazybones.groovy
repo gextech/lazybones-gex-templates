@@ -34,6 +34,7 @@ processTemplates "core/build.gradle", props
 processTemplates "docker/docker-compose.yml", props
 processTemplates "docker/database/setup.sh", props
 processTemplates "**/application.yaml", props
+processTemplates "**/messages_en.properties", props
 processTemplates "gradle.properties", props
 processTemplates "js-client/package.json", props
 processTemplates "raml/package.json", props

@@ -3,12 +3,13 @@ package ${group}.domain
 import grails.persistence.*
 
 import gex.data.Persistable
+import gex.data.pagination.Paginable
 
 import org.jadira.usertype.dateandtime.joda.PersistentDateTime
 import org.joda.time.DateTime
 
 @Entity
-class Hero implements Persistable{
+class Hero implements Persistable, Paginable{
 
   String id
   String name

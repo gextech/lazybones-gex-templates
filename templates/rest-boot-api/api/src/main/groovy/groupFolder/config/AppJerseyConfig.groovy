@@ -1,6 +1,6 @@
 package ${group}.config
 
-import gex.jaxrs.provider.DomainClassValidationExceptionMapper
+import gex.jaxrs.provider.EntityValidationExceptionMapper
 import gex.jaxrs.provider.GenericExceptionExceptionMapper
 import gex.jaxrs.provider.ObjectNotFoundExceptionExceptionMapper
 import org.glassfish.jersey.server.ResourceConfig
@@ -37,7 +37,7 @@ class AppJerseyConfig {
     JerseyConfigResourcesV1() {
       register(RequestContextFilter)
       register(GsonProvider)
-      register(DomainClassValidationExceptionMapper)
+      register(EntityValidationExceptionMapper)
       register(ObjectNotFoundExceptionExceptionMapper)
       register(GenericExceptionExceptionMapper)
       register(MultiPartFeature)
@@ -53,7 +53,7 @@ class AppJerseyConfig {
     JerseyConfigResourcesV2() {
       register(RequestContextFilter)
       register(GsonProvider)
-      register(DomainClassValidationExceptionMapper)
+      register(EntityValidationExceptionMapper)
       register(ObjectNotFoundExceptionExceptionMapper)
       register(GenericExceptionExceptionMapper)
       register(MultiPartFeature)

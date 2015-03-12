@@ -1,7 +1,7 @@
 package ${group}.restv1
 
 
-import ${group}.domain.Hero
+import ${group}.dto.v1.Hero
 import ${group}.jaxrs.v1.HeroResource
 import ${group}.service.HeroService
 

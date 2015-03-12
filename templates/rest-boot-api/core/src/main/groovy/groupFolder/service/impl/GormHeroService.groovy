@@ -7,6 +7,7 @@ import ${group}.dto.v1.Hero
 import ${group}.dto.v1.HeroPage
 import ${group}.service.HeroService
 import org.springframework.stereotype.Component
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 
 import static gex.serling.binding.Util.bind
@@ -14,6 +15,10 @@ import static gex.serling.binding.Util.bind
 @Component
 @Transactional
 class GormHeroService implements HeroService {
+
+  @Autowired
+  @Delegate
+  CommonServiceHelper commonServiceHelper
 
   @Override
   Hero createHero(Hero hero) {
@@ -26,7 +31,8 @@ class GormHeroService implements HeroService {
   @Override
   HeroPage listHeroes(Long from, Long size) {
     PageParams pageParams = new PageParams(from: from, size: size)
-    null
+    def results = gex.example.domain.Hero.searchPage(pageParams)
+    toDtoPage(results)
   }
 
   @Override
