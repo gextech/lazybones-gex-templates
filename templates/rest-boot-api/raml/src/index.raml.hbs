@@ -11,9 +11,11 @@ schemas:
   - simpleOK: !include simpleOK.schema.json
   - user: !include users/user.schema.json
   - map: !include map.schema.json
+  - pageMeta: !include pagination/page.schema.json
+  {{#if includeExampleService}}
   - hero  : !include heroes/hero.schema.json
   - heroes : !include heroes/heroes.schema.json
-  - pageMeta: !include pagination/page.schema.json
+  {{/if}}
 
 resourceTypes: !include resourcesTypes.raml
 
@@ -32,7 +34,8 @@ resourceTypes: !include resourcesTypes.raml
       200:
         body:
           schema: map
-          
+
+{{#if includeExampleService}}          
 /heroes:
   displayName: Heroes
   type: collection
@@ -40,3 +43,4 @@ resourceTypes: !include resourcesTypes.raml
   /{name}:
     displayName: Hero
     type: member
+{{/if}}

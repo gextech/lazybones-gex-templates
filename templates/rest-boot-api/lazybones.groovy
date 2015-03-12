@@ -121,6 +121,7 @@ if(!props.includeExampleService){
     new File(coreRoot, 'service/impl/GormHeroService.groovy'),
     new File(domainRoot, 'domain/Hero.groovy'),
     new File(migrationsRoot, 'V3__heroes.sql'),
+    new File(ramlRoot, 'heroes'),
   ]
   files.each {
     if(it.exists()) {
