@@ -1,4 +1,17 @@
 
+0.1.14 / 2015-03-12
+==================
+
+  * No more heroes!
+  * Group was always hardcoded as gex.example in some cases
+  * Giving an option to not include Hero service
+  * Adding Persistable trait
+  * Retrofit tests for hero
+  * Added message bundle
+  * Adding hero resources and services
+  * Modifiyng index.raml and pagination schema
+  * upgrade RxJava, JaxRSAST, SpringCloud
+
 0.1.13 / 2015-03-04
 ==================
 
