@@ -8,7 +8,7 @@ import com.squareup.okhttp.Request
 import com.squareup.okhttp.Response
 import com.google.gson.Gson
 
-import gex.example.service.XkcdService
+import ${group}.service.XkcdService
 import org.springframework.stereotype.Component
 
 @Component

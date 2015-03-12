@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id" : "heroes/heroes.schema.json",
+  "title": "HeroPage",
+  "description": "A hero page",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "hero.schema.json",
+        "description": "A Hero"
+      }
+    },
+    "page" : {
+      "type": "object",
+      "$ref": "../pagination/page.schema.json"
+    }
+  }
+}
