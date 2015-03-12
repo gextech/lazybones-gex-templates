@@ -43,7 +43,7 @@ class HelloResourceSpec extends Specification {
         .buildApi()
 
     then:
-      gex.example.client.v1.ApiException ex = thrown()
+      ${group}.client.v1.ApiException ex = thrown()
       ex.message == "Cannot login with request data"
   }
 

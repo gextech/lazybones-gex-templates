@@ -24,6 +24,7 @@ if(props.includeHystrix) {
   props.includeHystrixMonitoring = false
 }
 props.includeDocker = ask("Do you want to include docker and docker-compose templates?: [Y] ", "Y", "includeDocker")?.toLowerCase() == 'y'
+props.includeExampleService = ask("Do you want to include an example service (with pagination)?: [Y] ", "Y", "includeExampleService")?.toLowerCase() == 'y'
 
 props.dockerPrefix = props.projectName.replaceAll('-', '').replaceAll('_', '')
 props.groupFolder = props.group.replace('.' as char, '/' as char)
@@ -97,6 +98,35 @@ if(!props.includeHystrixMonitoring) {
 
 if(!props.includeDocker) {
   FileUtils.forceDelete(new File(projectDir, "docker"))
+}
+
+if(!props.includeExampleService){
+  def apiRoot = new File(projectDir, conversion['api/src/main/groovy/groupFolder/'])
+  def resourcesRoot = new File(projectDir, 'api/src/main/resources/')
+  def clientTestRoot = new File(projectDir, conversion['client/src/test/groovy/groupFolder/'])
+  def coreRoot = new File(projectDir, conversion['core/src/main/groovy/groupFolder/'])
+  def domainRoot = new File(projectDir, conversion['domain/src/main/groovy/groupFolder/'])
+  def migrationsRoot = new File(projectDir, 'domain/resources/db/migration/')
+  def ramlRoot = new File(projectDir, 'raml/src/')
+  
+  def files = [
+    new File(apiRoot, 'restv1/HeroResourceV1.groovy'),
+    new File(apiRoot, 'restv1/HeroesResourceV1.groovy'),
+    new File(clientTestRoot, 'HeroSpec.groovy'),
+    new File(resourcesRoot, 'messages_en.properties'),
+    new File(coreRoot, 'CoreConfig.groovy'),
+    new File(coreRoot, 'CoreConfigObject.groovy'),
+    new File(coreRoot, 'service/HeroService.groovy'),
+    new File(coreRoot, 'service/helpers/CommonServiceHelper.groovy'),
+    new File(coreRoot, 'service/impl/GormHeroService.groovy'),
+    new File(domainRoot, 'domain/Hero.groovy'),
+    new File(migrationsRoot, 'V3__heroes.sql'),
+  ]
+  files.each {
+    if(it.exists()) {
+      FileUtils.forceDelete(it)
+    }
+  }
 }
 
 if (hasFeature("scmExclusions")) {

@@ -2,7 +2,7 @@ package ${group}.service
 
 import ${group}.dto.v1.Hero
 import ${group}.dto.v1.HeroPage
-import gex.example.dto.v1.HeroPage
+import ${group}.dto.v1.HeroPage
 
 interface HeroService {
 

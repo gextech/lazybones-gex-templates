@@ -22,7 +22,7 @@ class GormHeroService implements HeroService {
 
   @Override
   Hero createHero(Hero hero) {
-    gex.example.domain.Hero domainHero = bind(hero, gex.example.domain.Hero)
+    ${group}.domain.Hero domainHero = bind(hero, ${group}.domain.Hero)
     domainHero.safeSave()
     bind(domainHero, Hero)
   }
@@ -31,7 +31,7 @@ class GormHeroService implements HeroService {
   @Override
   HeroPage listHeroes(Long from, Long size) {
     PageParams pageParams = new PageParams(from: from, size: size)
-    def results = gex.example.domain.Hero.searchPage(pageParams)
+    def results = ${group}.domain.Hero.searchPage(pageParams)
     toDtoPage(results)
   }
 
@@ -53,8 +53,8 @@ class GormHeroService implements HeroService {
   }
 
 
-  private gex.example.domain.Hero getDomainHero(String name, Boolean failOnNotFound = false ){
-    def domainHero = gex.example.domain.Hero.find{
+  private ${group}.domain.Hero getDomainHero(String name, Boolean failOnNotFound = false ){
+    def domainHero = ${group}.domain.Hero.find{
       name == name
     }
 

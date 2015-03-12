@@ -1,7 +1,7 @@
 package ${group}
 
-import gex.example.domain.Hero
-import gex.example.dto.v1.HeroPage
+import ${group}.domain.Hero
+import ${group}.dto.v1.HeroPage
 import gex.serling.binding.Util
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
